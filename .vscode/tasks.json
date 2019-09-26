@@ -1,0 +1,38 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "args": [
+                "build",
+                "${workspaceFolder}/SendAuthCodeToController/SendAuthCodeToController.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "deploy",
+            "command": "serverless",
+            "type": "process",
+            "group": "build",
+            "args": [
+                "--aws-profile",
+                "abk",
+                "--region",
+                "us-west-1",
+                "--stage",
+                "dev",
+                "--stackName",
+                "gifmaker-dev",
+                "deploy"
+            ],
+            // "dependsOn": ["buildRelease"],
+            "problemMatcher": []
+        }
+    ]
+}
